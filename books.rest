@@ -1,0 +1,113 @@
+### Get all books
+GET http://localhost:8080/books
+
+### Get a specific book (example: ID 3)
+GET http://localhost:8080/books/3
+
+### Add a new book
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+    "bookDetail": "A Game of Thrones",
+    "ownerName": "jack",
+    "locationName": "Library",
+    "borrowed": false
+}
+
+### Borrow a book (example: ID 2, borrowed by Alex from Bell)
+POST http://localhost:8080/books/2/borrow
+Content-Type: application/json
+
+{
+    "borrowerName": "Alex",
+    "receivedFrom": "Bell"
+}
+
+### Borrow a book (example: ID 2, borrowed by Olivia from Alex)
+POST http://localhost:8080/books/2/borrow
+Content-Type: application/json
+
+{
+    "borrowerName": "Olivia",
+    "receivedFrom": "Alex"
+}
+
+### Borrow a book (example: ID 2, borrowed by Emma from Olivia)
+POST http://localhost:8080/books/2/borrow
+Content-Type: application/json
+
+{
+    "borrowerName": "Emma",
+    "receivedFrom": "Olivia"
+}
+
+### Get book details with current holder (ID 2)
+GET http://localhost:8080/books/2
+
+### Return a book (ID 2) in specific borrow record (ID 3) to Olivia
+PUT http://localhost:8080/books/2/return/3
+Content-Type: application/json
+
+{
+    "returnedTo": "Olivia"
+}
+
+### Return a book (ID 2) in specific borrow record (ID 2) to Alex
+PUT http://localhost:8080/books/2/return/2
+Content-Type: application/json
+
+{
+    "returnedTo": "Alex"
+}
+
+### Return a book (ID 2) in specific borrow record (ID 1) to Bell
+PUT http://localhost:8080/books/2/return/1
+Content-Type: application/json
+
+{
+    "returnedTo": "Bell"
+}
+
+### Invalid Return Attempt (ID 2, trying to return to John, who is not in the borrow history)
+PUT http://localhost:8080/books/2/return/2
+Content-Type: application/json
+
+{
+    "returnedTo": "John"
+}
+
+
+### Get borrowing history for a book (example: ID 2)
+GET http://localhost:8080/books/2/history
+
+### Update a book's details (example: ID 2)
+PUT http://localhost:8080/books/2
+Content-Type: application/json
+
+{
+    "bookDetail": "The Catcher in the Rye",
+    "ownerName": "Bell",
+    "locationName": "Reading Room",
+    "borrowed": false
+}
+
+### Attempt to borrow a book that is already borrowed (ID 2)
+POST http://localhost:8080/books/2/borrow
+Content-Type: application/json
+
+{
+    "borrowerName": "Charlie",
+    "receivedFrom": "Emma"
+}
+
+### Attempt to return a book that was never borrowed (ID 3)
+PUT http://localhost:8080/books/3/return/99
+Content-Type: application/json
+
+{
+    "returnedTo": "Jack"
+}
+
+### Delete a book (example: ID 5)
+DELETE http://localhost:8080/books/5
