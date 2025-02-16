@@ -29,8 +29,8 @@ This is a **Spring Boot REST API** for managing book borrowing in a library-like
 ### 1️⃣ Clone the Repository
 
 ```
-git clone https://github.com/your-repository/book-borrowing-system.git
-cd book-borrowing-system
+git clone https://github.com/Meantisiyakorn6509611973/books.git
+cd books
 ```
 
 ### 2️⃣ Build the Project
